@@ -23,7 +23,7 @@ interface NavItem {
 const navigation: NavItem[] = [
     { label: "Overview", href: "/", icon: LayoutDashboard },
     { label: "Transactions", href: "#", icon: Wallet },
-    { label: "Expenses", href: "#", icon: TrendingDown },
+    { label: "Expenses", href: "/expenses", icon: TrendingDown },
 ];
 
 interface DashboardLayoutProps {
