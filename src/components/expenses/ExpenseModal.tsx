@@ -105,8 +105,9 @@ export default function ExpenseModal({ isOpen, onClose, onSubmit, categories }: 
 
                         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, marginBottom: 20 }}>
                             <div className="form-group" style={{ marginBottom: 0 }}>
-                                <label className="form-label">CATEGORY</label>
+                                <label htmlFor="expense_category" className="form-label">CATEGORY</label>
                                 <select 
+                                    id="expense_category"
                                     className="input-control" 
                                     style={{ paddingLeft: 16 }}
                                     value={categoryId}
@@ -122,8 +123,9 @@ export default function ExpenseModal({ isOpen, onClose, onSubmit, categories }: 
                             </div>
 
                             <div className="form-group" style={{ marginBottom: 0 }}>
-                                <label className="form-label">DATE</label>
+                                <label htmlFor="expense_date" className="form-label">DATE</label>
                                 <input 
+                                    id="expense_date"
                                     type="date" 
                                     className="input-control" 
                                     style={{ paddingLeft: 16 }}
@@ -136,8 +138,9 @@ export default function ExpenseModal({ isOpen, onClose, onSubmit, categories }: 
 
                         <div style={{ display: "grid", gridTemplateColumns: "80px 1fr", gap: 12, marginBottom: 20 }}>
                             <div className="form-group" style={{ marginBottom: 0 }}>
-                                <label className="form-label">CUR</label>
+                                <label htmlFor="expense_currency" className="form-label">CUR</label>
                                 <input 
+                                    id="expense_currency"
                                     type="text" 
                                     className="input-control" 
                                     style={{ paddingLeft: 16, textAlign: "center" }}
@@ -146,8 +149,9 @@ export default function ExpenseModal({ isOpen, onClose, onSubmit, categories }: 
                                 />
                             </div>
                             <div className="form-group" style={{ marginBottom: 0 }}>
-                                <label className="form-label">AMOUNT</label>
+                                <label htmlFor="expense_amount" className="form-label">AMOUNT</label>
                                 <input 
+                                    id="expense_amount"
                                     type="number" 
                                     step="any"
                                     placeholder="50000" 
@@ -161,8 +165,9 @@ export default function ExpenseModal({ isOpen, onClose, onSubmit, categories }: 
                         </div>
 
                         <div className="form-group" style={{ marginBottom: 20 }}>
-                            <label className="form-label">MERCHANT</label>
+                            <label htmlFor="expense_merchant" className="form-label">MERCHANT</label>
                             <input 
+                                id="expense_merchant"
                                 type="text" 
                                 placeholder="e.g. Starbucks" 
                                 className="input-control" 
@@ -174,8 +179,9 @@ export default function ExpenseModal({ isOpen, onClose, onSubmit, categories }: 
 
                         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, marginBottom: 20 }}>
                             <div className="form-group" style={{ marginBottom: 0 }}>
-                                <label className="form-label">PAYMENT METHOD</label>
+                                <label htmlFor="expense_payment_method" className="form-label">PAYMENT METHOD</label>
                                 <select 
+                                    id="expense_payment_method"
                                     className="input-control" 
                                     style={{ paddingLeft: 16 }}
                                     value={paymentMethod}
@@ -190,8 +196,9 @@ export default function ExpenseModal({ isOpen, onClose, onSubmit, categories }: 
                             </div>
 
                             <div className="form-group" style={{ marginBottom: 0 }}>
-                                <label className="form-label">NOTE</label>
+                                <label htmlFor="expense_note" className="form-label">NOTE</label>
                                 <input 
+                                    id="expense_note"
                                     type="text" 
                                     placeholder="Coffee with client" 
                                     className="input-control" 
