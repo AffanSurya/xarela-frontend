@@ -194,3 +194,68 @@ export const expensesApiClient = {
         });
     },
 };
+
+export interface RetirementPlanRecord {
+    id: string;
+    name: string;
+    current_age: number;
+    target_retirement_age: number;
+    target_annual_expense: string;
+    inflation_rate: number;
+    expected_return_rate: number;
+    safe_withdrawal_rate: number;
+    target_corpus: string;
+}
+
+export interface RetirementPlanPayload {
+    name: string;
+    current_age: number;
+    target_retirement_age: number;
+    target_annual_expense: string;
+    inflation_rate: number;
+    expected_return_rate: number;
+    safe_withdrawal_rate: number;
+}
+
+export interface RetirementScenarioProjection {
+    scenario_name: string;
+    risk_profile: string;
+    expected_return_rate: number;
+    inflation_rate: number;
+    projected_corpus_at_retirement: string;
+    required_monthly_contribution: string;
+}
+
+export interface ComputeRetirementResult {
+    plan_id?: string;
+    fi_number: string;
+    projected_corpus_at_retirement: string;
+    required_monthly_contribution: string;
+    years_to_retirement: number;
+    scenarios: RetirementScenarioProjection[];
+}
+
+export const retirementApiClient = {
+    listPlans() {
+        return request<{ data: RetirementPlanRecord[] }>("/api/v1/retirement-plans");
+    },
+    createPlan(payload: RetirementPlanPayload) {
+        return request<{ data: RetirementPlanRecord }>("/api/v1/retirement-plans", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload),
+        });
+    },
+    updatePlan(id: string, payload: RetirementPlanPayload) {
+        return request<{ data: RetirementPlanRecord }>(`/api/v1/retirement-plans/${id}`, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload),
+        });
+    },
+    compute(id: string) {
+        return request<{ data: ComputeRetirementResult }>(`/api/v1/retirement-plans/${id}/compute`, {
+            method: "POST",
+        });
+    },
+};
