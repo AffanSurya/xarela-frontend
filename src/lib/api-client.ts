@@ -145,3 +145,52 @@ export const snapshotsApiClient = {
         return request<{ data: SnapshotRecord[] }>("/api/v1/portfolio-snapshots");
     },
 };
+
+export interface ExpenseCategoryRecord {
+    id: string;
+    name: string;
+    parent_id?: string;
+    color?: string;
+    is_system: boolean;
+}
+
+export interface ExpenseRecord {
+    id: string;
+    category_id: string;
+    amount: string;
+    currency: string;
+    occurred_on: string;
+    merchant?: string;
+    note?: string;
+    payment_method?: string;
+    created_at: string;
+}
+
+export interface CreateExpensePayload {
+    category_id: string;
+    amount: string;
+    currency: string;
+    occurred_on: string;
+    merchant?: string;
+    note?: string;
+    payment_method?: string;
+}
+
+export const categoriesApiClient = {
+    list() {
+        return request<{ data: ExpenseCategoryRecord[] }>("/api/v1/expense-categories");
+    },
+};
+
+export const expensesApiClient = {
+    list() {
+        return request<{ data: ExpenseRecord[] }>("/api/v1/expenses");
+    },
+    create(payload: CreateExpensePayload) {
+        return request<{ data: ExpenseRecord }>("/api/v1/expenses", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload),
+        });
+    },
+};
