@@ -126,3 +126,22 @@ export const userApiClient = {
         return request<{ data: { full_name: string; base_currency: string; timezone: string } }>("/api/v1/user/settings");
     },
 };
+
+export interface SnapshotRecord {
+    id: string;
+    snapshot_date: string;
+    net_worth: string;
+    total_assets: string;
+    total_liabilities: string;
+    crypto_value: string;
+    stock_value: string;
+    cash_value: string;
+    annualized_expense: string;
+    savings_rate: string;
+}
+
+export const snapshotsApiClient = {
+    list() {
+        return request<{ data: SnapshotRecord[] }>("/api/v1/portfolio-snapshots");
+    },
+};
