@@ -178,8 +178,9 @@ function RetirementWorkspace() {
 
                 <form onSubmit={handleCompute}>
                     <div className="form-group">
-                        <label className="form-label">CURRENT AGE</label>
+                        <label htmlFor="sim_current_age" className="form-label">CURRENT AGE</label>
                         <input 
+                            id="sim_current_age"
                             type="number" 
                             className="input-control"
                             value={currentAge}
@@ -190,8 +191,9 @@ function RetirementWorkspace() {
                     </div>
 
                     <div className="form-group">
-                        <label className="form-label">TARGET RETIREMENT AGE</label>
+                        <label htmlFor="sim_target_age" className="form-label">TARGET RETIREMENT AGE</label>
                         <input 
+                            id="sim_target_age"
                             type="number" 
                             className="input-control"
                             value={targetAge}
@@ -202,9 +204,10 @@ function RetirementWorkspace() {
                     </div>
 
                     <div className="form-group">
-                        <label className="form-label">ESTIMATED ANNUAL EXPENSE (TODAY)</label>
+                        <label htmlFor="sim_annual_expense" className="form-label">ESTIMATED ANNUAL EXPENSE (TODAY)</label>
                         <div className="input-addon-box">
                             <input 
+                                id="sim_annual_expense"
                                 type="number" 
                                 className="input-control"
                                 value={annualExpense}
@@ -222,9 +225,10 @@ function RetirementWorkspace() {
                     <div style={{ height: 1, background: "rgba(255, 255, 255, 0.06)", margin: "24px 0" }} />
 
                     <div className="form-group">
-                        <label className="form-label">EXPECTED INVESTMENT RETURN</label>
+                        <label htmlFor="sim_return_rate" className="form-label">EXPECTED INVESTMENT RETURN</label>
                         <div className="input-addon-box">
                             <input 
+                                id="sim_return_rate"
                                 type="number" 
                                 step="0.1"
                                 className="input-control"
@@ -238,9 +242,10 @@ function RetirementWorkspace() {
 
                     <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
                         <div className="form-group">
-                            <label className="form-label">INFLATION RATE</label>
+                            <label htmlFor="sim_inflation_rate" className="form-label">INFLATION RATE</label>
                             <div className="input-addon-box">
                                 <input 
+                                    id="sim_inflation_rate"
                                     type="number" 
                                     step="0.1"
                                     className="input-control"
@@ -253,9 +258,10 @@ function RetirementWorkspace() {
                         </div>
 
                         <div className="form-group">
-                            <label className="form-label">WITHDRAWAL RATE (SWR)</label>
+                            <label htmlFor="sim_swr_rate" className="form-label">WITHDRAWAL RATE (SWR)</label>
                             <div className="input-addon-box">
                                 <input 
+                                    id="sim_swr_rate"
                                     type="number" 
                                     step="0.1"
                                     className="input-control"
