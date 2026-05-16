@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
@@ -22,7 +23,7 @@ vi.mock('@/components/layout/DashboardLayout', () => ({
 
 // Mock API Client methods
 vi.mock('@/lib/api-client', async (importOriginal) => {
-  const actual = await importOriginal() as any;
+  const actual = await importOriginal() as Record<string, any>;
   return {
     ...actual,
     retirementApiClient: {
@@ -63,7 +64,7 @@ describe('RetirementPlanner Calculation & Output Rendering', () => {
   beforeEach(() => {
     vi.clearAllMocks();
     // Default behaviour: No initial saved plans
-    (retirementApiClient.listPlans as any).mockResolvedValue({ data: [] });
+    vi.mocked(retirementApiClient.listPlans).mockResolvedValue({ data: [] } as any);
   });
 
   it('renders simulator form correctly after syncing bootstrap state', async () => {
@@ -91,7 +92,7 @@ describe('RetirementPlanner Calculation & Output Rendering', () => {
 
     const currentAgeInput = screen.getByLabelText(/current age/i);
     const targetAgeInput = screen.getByLabelText(/target retirement age/i);
-    const computeBtn = screen.getByRole('button', { name: /compute projections/i });
+    // const computeBtn = screen.getByRole('button', { name: /compute projections/i });
 
     const form = currentAgeInput.closest('form')!;
     fireEvent.change(currentAgeInput, { target: { value: 35 } });
@@ -104,8 +105,8 @@ describe('RetirementPlanner Calculation & Output Rendering', () => {
   });
 
   it('successfully calculates and renders FIRE target outputs and risk scenarios', async () => {
-    (retirementApiClient.createPlan as any).mockResolvedValue({ data: { id: 'new-plan-id' } });
-    (retirementApiClient.compute as any).mockResolvedValue({ data: mockResults });
+    vi.mocked(retirementApiClient.createPlan).mockResolvedValue({ data: { id: 'new-plan-id' } } as any);
+    vi.mocked(retirementApiClient.compute).mockResolvedValue({ data: mockResults } as any);
 
     render(<RetirementPage />);
 
