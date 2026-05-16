@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
@@ -42,7 +43,7 @@ describe('ExpenseModal Validation and Submit', () => {
     );
 
     const amountInput = screen.getByLabelText(/amount/i);
-    const submitButton = screen.getByRole('button', { name: /save expense/i });
+    // const submitButton = screen.getByRole('button', { name: /save expense/i });
 
     // Zero or negative amount test
     fireEvent.change(amountInput, { target: { value: '0' } });

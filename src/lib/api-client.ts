@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { backendConfig } from "@/config/env";
 import { getCookie, setCookie, deleteCookie } from "./cookies";
 

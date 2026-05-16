@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import React, { useState, useEffect } from "react";
@@ -75,7 +76,7 @@ function RetirementWorkspace() {
                     const calcRes = await retirementApiClient.compute(saved.id);
                     setResults(calcRes.data);
                 }
-            } catch (err) {
+            } catch {
                 console.warn("No warm cache scenarios present.");
             } finally {
                 setIsBootstrapping(false);

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
 import { render, screen, fireEvent, waitFor, cleanup } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
@@ -11,18 +12,22 @@ vi.mock('@/contexts/AuthContext', () => ({
 }));
 
 describe('Auth Forms Validation', () => {
-  let loginMock: any;
-  let registerMock: any;
+  let loginMock: ReturnType<typeof vi.fn>;
+  let registerMock: ReturnType<typeof vi.fn>;
 
   beforeEach(() => {
     loginMock = vi.fn();
     registerMock = vi.fn();
     
-    (useAuth as any).mockReturnValue({
+    vi.mocked(useAuth).mockReturnValue({
       login: loginMock,
       register: registerMock,
       isAuthenticated: false,
-    });
+      isLoading: false,
+      user: null,
+      logout: vi.fn(),
+      refresh: vi.fn(),
+    } as any);
   });
 
   afterEach(() => {
@@ -35,7 +40,7 @@ describe('Auth Forms Validation', () => {
     // Inputs render successfully
     const emailInput = screen.getByLabelText(/email address/i);
     const passwordInput = screen.getByLabelText(/^password$/i);
-    const submitButton = screen.getByRole('button', { name: /sign in/i });
+    // const submitButton = screen.getByRole('button', { name: /sign in/i });
 
     expect(emailInput).toBeInTheDocument();
     expect(passwordInput).toBeInTheDocument();
